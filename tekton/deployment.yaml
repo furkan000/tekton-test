@@ -16,3 +16,5 @@ spec:
         - name: hello-app
           image: image-registry.openshift-image-registry.svc:5000/furkan/tekton-test
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
