@@ -1,0 +1,19 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: hello-template
+spec:
+  params:
+    - name: gitrevision
+    - name: gitrepositoryurl
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1
+      kind: PipelineRun
+      metadata:
+        generateName: hello-run-
+      spec:
+        pipelineRef:
+          name: hello-pipeline
+        params:
+          - name: IMAGE
+            value: image-registry.openshift-image-registry.svc:5000/furkan/tekton-test

@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: hello-pipeline
+spec:
+  params:
+    - name: IMAGE
+  tasks:
+    - name: build-push
+      taskRef:
+        name: build-and-push
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE)

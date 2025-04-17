@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: build-and-push
+spec:
+  params:
+    - name: IMAGE
+  steps:
+    - name: build-and-push
+      image: quay.io/buildah/stable
+      script: |
+        #!/bin/sh
+        buildah bud -t $(params.IMAGE) .
+        buildah push $(params.IMAGE)
